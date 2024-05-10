@@ -1,13 +1,13 @@
-import userModel from "../../models/userModel.js"
+import markerModel from "../../models/markerModel.js"
 
 const update = async (req, res) => {
     try {
         const dados = req.body
         const id = req.params.id
-        const userEdited = await userModel.updateById(+id, dados)
+        const marker = await markerModel.updateById(+id, dados)
         res.json({
-            success: `usuario ${id} atualizado com sucesso`,
-            user
+            success: `marcador ${id} atualizado com sucesso`,
+            marker
         })
     } catch (error) {
         console.log(error);
@@ -16,8 +16,5 @@ const update = async (req, res) => {
         })
     }
 }
-
-
-
 
 export default update

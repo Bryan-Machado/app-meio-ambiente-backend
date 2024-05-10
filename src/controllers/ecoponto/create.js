@@ -1,11 +1,10 @@
-import userModel from "../../models/userModel.js"
+import ecopontoModel from "../../models/ecopontoModel.js"
 import zodErrorParser from "../../helpers/zodErrorFormatter.js"
-import bcrypt from 'bcrypt'
 
 const create = async (req, res) => {
     try {
         const dados = req.body
-        const result = userModel.validateUserToCreate(dados)
+        const result = ecopontoModel.validateEcopontoToCreate(dados)
         
         if (!result.success) {
             return res.status(400).json({
@@ -14,12 +13,10 @@ const create = async (req, res) => {
             })
         }
 
-        result.data.pass = await bcrypt.hash(result.data.pass, 10)
-        const user = await userModel.createUser(result.data)
-        delete user.pass
+        const ecoponto = await ecopontoModel.createEcoponto(result.data)
         res.json({
-            success: `usuario ${user.id} criado com sucesso`,
-            user
+            success: `ecoponto ${ecoponto.id} criado com sucesso`,
+            ecoponto
         })
     } catch (error) {
         console.log(error);

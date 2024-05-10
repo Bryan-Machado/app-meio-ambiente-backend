@@ -1,12 +1,12 @@
-import userModel from "../../models/userModel.js"
+import ecopontoModel from "../../models/ecopontoModel.js"
 
 const getById = (req, res) => {
     try {
         const id = req.params.id
-        const user = userModel.getById(+id)
+        const ecoponto = ecopontoModel.getById(+id)
         res.json({
-            success: `usuario ${id} encontrado com sucesso`,
-            user
+            success: `ecoponto ${id} encontrado com sucesso`,
+            ecoponto
         })
     } catch (error) {
         console.log(error);

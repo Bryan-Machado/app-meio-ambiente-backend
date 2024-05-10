@@ -1,9 +1,9 @@
 import express from 'express'
-import listAll from '../controllers/product/listAll.js';
-import getById from '../controllers/product/getById.js';
-import create from '../controllers/product/create.js';
-import update from '../controllers/product/update.js';
-import remove from '../controllers/product/remove.js';
+import listAll from '../controllers/marker/listAll.js';
+import getById from '../controllers/marker/getById.js';
+import create from '../controllers/marker/create.js';
+import update from '../controllers/marker/update.js';
+import remove from '../controllers/marker/remove.js';
 const router = express.Router();
 
 // Rotas do product /product

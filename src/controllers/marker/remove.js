@@ -1,12 +1,12 @@
-import userModel from "../../models/userModel.js"
+import markerModel from "../../models/markerModel.js"
 
 const remove = async (req, res) => {
     try {
         const id = req.params.id
-        const user = await userModel.deleteById(+id)
+        const marker = await markerModel.deleteById(+id)
         res.json({
-            success: `usuario ${id} deletado com sucesso`,
-            user
+            success: `marcador ${id} deletado com sucesso`,
+            marker
         })
     } catch (error) {
         console.log(error);

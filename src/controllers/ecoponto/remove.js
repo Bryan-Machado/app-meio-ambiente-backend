@@ -1,12 +1,12 @@
-import productModel from "../../models/productModel.js"
+import ecopontoModel from "../../models/ecopontoModel.js"
 
 const remove = async (req, res) => {
     try {
         const id = req.params.id
-        const user = await productModel.deleteById(+id)
+        const ecoponto = await ecopontoModel.deleteById(+id)
         res.json({
-            success: `produto ${id} deletado com sucesso`,
-            user
+            success: `Ecoponto ${id} com nome: ${ecoponto.nome}; e cnpj: ${ecoponto.cnpj} deletado com sucesso`,
+            ecoponto
         })
     } catch (error) {
         console.log(error);

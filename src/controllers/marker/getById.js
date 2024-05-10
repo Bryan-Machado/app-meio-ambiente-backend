@@ -1,12 +1,12 @@
-import productModel from "../../models/productModel.js"
+import markerModel from "../../models/markerModel.js"
 
 const getById = (req, res) => {
     try {
         const id = req.params.id
-        const user = productModel.getById(+id)
+        const marker = markerModel.getById(+id)
         res.json({
-            success: `produto ${id} encontrado com sucesso`,
-            user
+            success: `marcador ${id} encontrado com sucesso`,
+            marker
         })
     } catch (error) {
         console.log(error);

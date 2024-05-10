@@ -1,12 +1,12 @@
-import productModel from "../../models/productModel.js"
+import markerModel from "../../models/markerModel.js"
 
 const create = async (req, res) => {
     try {
         const dados = req.body
-        const user = await productModel.createProduct(dados)
+        const marker = await markerModel.createMarker(dados)
         res.json({
-            success: `produto ${id} criado com sucesso`,
-            user
+            success: `marcador ${id} criado com sucesso`,
+            marker
         })
     } catch (error) {
         console.log(error);

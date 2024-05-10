@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 const prisma = new PrismaClient()
 
-const userSchema = z.object({
+const ecopontoSchema = z.object({
     id: z.number({
         required_error: 'ID é obrigatório',
         invalid_type_error: 'O ID deve ser um numero inteiro'
@@ -34,50 +34,37 @@ const userSchema = z.object({
     .max(10000, {message: 'A url deve ter no máximo 10 mil caracteres'})
 })
 
-const validateUserToCreate = (user) => {
-    const partialUserSchema = userSchema.partial({id: true}) //true para todos que são opcionais
-    return partialUserSchema.safeParse(user)
+const validateEcopontoToCreate = (user) => {
+    const partialEcopontoSchema = ecopontoSchema.partial({id: true}) //true para todos que são opcionais
+    return partialEcopontoSchema.safeParse(user)
 }
 
-const validateUserToUpdate = (user) => {
-    const partialUserSchema = userSchema.partial({pass: true}) //true para todos que são opcionais
-    return partialUserSchema.safeParse(user)
-}
-
-const validateUserToLogin = (user) => {
-    const partialUserSchema = userSchema.partial({id: true, name: true, avatar: true}) //true para todos que são opcionais
-    return partialUserSchema.safeParse(user)
+const validateEcopontoToUpdate = (user) => {
+    const partialEcopontoSchema = ecopontoSchema.partial({pass: true}) //true para todos que são opcionais
+    return partialEcopontoSchema.safeParse(user)
 }
 
 const getAll = async () => {
-    return await prisma.user.findMany()
+    return await prisma.ecoponto.findMany()
 }
 
 const getById = async (id) => {
-    return await prisma.user.findUnique({
+    return await prisma.ecoponto.findUnique({
         where: {
             id: id
         }
     })
 }
 
-const getByEmail = async (email) => {
-    return await prisma.user.findUnique({
-        where: {
-            email
-        }
+const createEcoponto = async (ecopontoObject) => {
+    return await prisma.ecoponto.create({
+        data: ecopontoObject
     })
 }
 
-const createUser = async (userObject) => {
-    return await prisma.user.create({
-        data: userObject
-    })
-}
-
-const updateById = async (id, newUserObject) => {
-    return await prisma.user.update({
-        data:  newUserObject,
+const updateById = async (id, newEcopontoObject) => {
+    return await prisma.ecoponto.update({
+        data:  newEcopontoObject,
         where: {
             id
         }
@@ -85,11 +72,11 @@ const updateById = async (id, newUserObject) => {
 }
 
 const deleteById = async (id) => {
-    return await prisma.user.delete({
+    return await prisma.ecoponto.delete({
         where: {
             id
         }
     })
 }
 
-export default {getAll, getById, getByEmail, createUser, updateById, deleteById, validateUserToCreate, validateUserToUpdate, validateUserToLogin}
+export default {getAll, getById, getByEmail, createEcoponto, updateById, deleteById, validateEcopontoToCreate, validateEcopontoToUpdate, validateEcopontoToLogin}

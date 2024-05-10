@@ -1,9 +1,9 @@
 import express from 'express'
-import listAll from '../controllers/user/listAll.js';
-import getById from '../controllers/user/getById.js';
-import create from '../controllers/user/create.js';
-import update from '../controllers/user/update.js';
-import remove from '../controllers/user/remove.js';
+import listAll from '../controllers/ecoponto/listAll.js';
+import getById from '../controllers/ecoponto/getById.js';
+import create from '../controllers/ecoponto/create.js';
+import update from '../controllers/ecoponto/update.js';
+import remove from '../controllers/ecoponto/remove.js';
 const router = express.Router();
 
 // Rotas do user /user

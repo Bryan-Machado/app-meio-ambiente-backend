@@ -1,11 +1,11 @@
-import userModel from "../../models/userModel.js"
+import ecopontoModel from "../../models/ecopontoModel.js";
 
 const listAll = async (req, res) => {
     try {
-        const users = await userModel.getAll()
+        const ecopontos = await ecopontoModel.getAll()
         return res.json({
-            success: 'Usuários listados com sucesso',
-            users
+            success: 'Ecopontos listados com sucesso',
+            ecopontos
         })
     } catch (error) {
         console.log(error);
