@@ -3,34 +3,45 @@ generator client {
 }
 
 datasource db {
-  // provider = "postgres"
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model product {
-  id       Int    @id @default(autoincrement())
-  name     String @db.VarChar(250)
-  price    Int
-  quantity Int
-  photo    String
+model categoria {
+  id                   Int                    @id @default(autoincrement())
+  nome                 String                 @db.VarChar(45)
+  descricao            String                 @db.VarChar(400)
+  marker_has_categoria marker_has_categoria[]
 }
 
-model user {
-  id     Int    @id @default(autoincrement())
-  name   String @db.VarChar(250)
-  email  String @unique(map: "email_UNIQUE") @db.VarChar(500)
-  pass   String @db.Text
-  avatar String @db.Text
-  sessions session[]
+model ecoponto {
+  id        Int      @id @default(autoincrement())
+  nome      String   @db.VarChar(45)
+  cnpj      String   @db.VarChar(20)
+  email     String?  @db.VarChar(45)
+  telefone  String?  @db.VarChar(45)
+  descricao String   @db.VarChar(400)
+  marker    marker[]
 }
 
-model session {
-  id        Int       @id @default(autoincrement())
-  userId    Int
-  token     String    @db.Text @unique(map: "unique-token")
-  createdAt DateTime  @default(now())
-  user      user      @relation(fields: [userId], references: [id], onDelete: Cascade)
+model marker {
+  id                   Int                    @id @default(autoincrement())
+  ecoponto_id          Int
+  longitude            BigInt
+  latitude             BigInt
+  ecoponto             ecoponto               @relation(fields: [ecoponto_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_marker_ecoponto")
+  marker_has_categoria marker_has_categoria[]
 
-  @@index([userId], name: "userId")
+  @@index([ecoponto_id], map: "fk_marker_ecoponto_idx")
+}
+
+model marker_has_categoria {
+  id           Int       @id @default(autoincrement())
+  marker_id    Int
+  categoria_id Int
+  categoria    categoria @relation(fields: [categoria_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_marker_has_categoria_categoria1")
+  marker       marker    @relation(fields: [marker_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_marker_has_categoria_marker1")
+
+  @@index([categoria_id], map: "fk_marker_has_categoria_categoria1_idx")
+  @@index([marker_id], map: "fk_marker_has_categoria_marker1_idx")
 }
