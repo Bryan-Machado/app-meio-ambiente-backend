@@ -14,7 +14,6 @@ app.use(cors({
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }))
-app.use(logger)
 app.use(cookieParser)
 
 app.use('/user', userRouter)
