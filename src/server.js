@@ -4,12 +4,8 @@ const app = express()
 import {PORT, HOST} from './config.js'
 import cors from 'cors'
 
-
-import logger  from './middlewares/logger.js'
-
 import userRouter from './routers/userRouter.js'
 import productRouter from './routers/productRouter.js'
-import authRouter from './routers/authRouter.js'
 import cookieParser from 'cookie-parser'
 
 app.use(express.json())
@@ -21,7 +17,6 @@ app.use(cors({
 app.use(logger)
 app.use(cookieParser)
 
-app.use('/auth', authRouter)
 app.use('/user', userRouter)
 app.use('/product', productRouter)
 

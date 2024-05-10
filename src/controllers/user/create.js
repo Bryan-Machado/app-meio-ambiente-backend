@@ -8,15 +8,9 @@ const create = async (req, res) => {
         const result = userModel.validateUserToCreate(dados)
         
         if (!result.success) {
-            const erroFormatado = result.error.format()
-            delete erroFormatado._errors
-            // erroFormatado.name ? erroFormatado.name = erroFormatado.name._errors : null
-            // erroFormatado.email ? erroFormatado.email = erroFormatado.email._errors : null
-            // erroFormatado.avatar ? erroFormatado.avatar = erroFormatado.avatar._errors : null
-            zodErrorParser(result.error)
             return res.status(400).json({
                 error: 'Dados de cadasro inválidos',
-                fields: erroFormatado
+                fields: zodErrorParser(result.error)
             })
         }
 
