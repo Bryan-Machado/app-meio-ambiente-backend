@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(cors({
   origin: ['http://localhost:3000', 'http://localhost:8081', 'http://meusite.com'],
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type']
 }))
 app.use(logger)
 app.use(cookieParser)
