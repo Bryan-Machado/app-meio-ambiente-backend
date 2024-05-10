@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  // provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model product {
+  id       Int    @id @default(autoincrement())
+  name     String @db.VarChar(250)
+  price    Int
+  quantity Int
+  photo    String
+}
+
+model user {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(250)
+  email  String @unique(map: "email_UNIQUE") @db.VarChar(500)
+  pass   String @db.Text
+  avatar String @db.Text
+  sessions session[]
+}
+
+model session {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  token     String    @db.Text @unique(map: "unique-token")
+  createdAt DateTime  @default(now())
+  user      user      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], name: "userId")
+}
