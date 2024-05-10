@@ -8,12 +8,26 @@ const ecopontoSchema = z.object({
         required_error: 'ID é obrigatório',
         invalid_type_error: 'O ID deve ser um numero inteiro'
     }),
-    name: z.string({
+    nome: z.string({
         required_error: 'Nome é obrigatório',
         invalid_type_error: 'O nome deve ser uma string'
     })
     .min(3, {message: 'O nome deve ter no mínimo 3 caracteres'})
     .max(250, {message: 'O nome deve ter no máximo 250 caracteres'}),
+
+    cnpj: z.string({
+        required_error: 'O CNPJ do ecoponto é obrigatório.',
+        invalid_type_error: 'O CNPJ deve ser uma string.'
+    })
+    .min(18, {message: 'O CNPJ deve ter 18 caracteres'})
+    .max(18, {message: 'O CNPJ deve ter 18 caracteres'}),
+
+    descricao: z.string({
+        required_error: 'O CNPJ do ecoponto é obrigatório.',
+        invalid_type_error: 'O CNPJ deve ser uma string.'
+    })
+    .min(50, {message: 'A descrição do ecoponto deve ter pelo menos 50 caracteres.'})
+    .max(400, {message: 'A descrição do ecoponto deve ter no maximo 400 caracteres.'}),
 
     email: z.string({
         required_error: 'Email é obrigatório',
@@ -21,27 +35,17 @@ const ecopontoSchema = z.object({
     })
     .email({message: 'Email inválido'}),
 
-    pass: z.string({
-        required_error: 'Senha é obrigatória',
-        invalid_type_error: 'A senha deve ser uma string'
-    }),
-
-    avatar: z.string({
-        required_error: 'Avatar é obrigatório',
-        invalid_type_error: 'O avatar deve ser uma string'
+    telefone: z.string({
+        required_error: 'O telefone do ecoponto é obrigatório.',
+        invalid_type_error: 'O telefone deve ser uma string.'
     })
-    .url({message: 'URL inválida'})
-    .max(10000, {message: 'A url deve ter no máximo 10 mil caracteres'})
+    .min(12, {message: 'O telefone do ecoponto deve ter pelo menos 12 caracteres.'})
+    .max(14, {message: 'O telefone do ecoponto deve ter no maximo 14 caracteres.'})
 })
 
-const validateEcopontoToCreate = (user) => {
-    const partialEcopontoSchema = ecopontoSchema.partial({id: true}) //true para todos que são opcionais
-    return partialEcopontoSchema.safeParse(user)
-}
-
-const validateEcopontoToUpdate = (user) => {
-    const partialEcopontoSchema = ecopontoSchema.partial({pass: true}) //true para todos que são opcionais
-    return partialEcopontoSchema.safeParse(user)
+const validateEcopontoToCreate = (ecoponto) => {
+    const partialEcopontoSchema = ecopontoSchema.partial({id: true, email: true, telefone: true}) //true para todos que são opcionais
+    return partialEcopontoSchema.safeParse(ecoponto)
 }
 
 const getAll = async () => {
@@ -79,4 +83,4 @@ const deleteById = async (id) => {
     })
 }
 
-export default {getAll, getById, getByEmail, createEcoponto, updateById, deleteById, validateEcopontoToCreate, validateEcopontoToUpdate, validateEcopontoToLogin}
+export default {getAll, getById, getByEmail, createEcoponto, updateById, deleteById, validateEcopontoToCreate, validateEcopontoToLogin}
