@@ -83,4 +83,4 @@ const deleteById = async (id) => {
     })
 }
 
-export default {getAll, getById, getByEmail, createEcoponto, updateById, deleteById, validateEcopontoToCreate, validateEcopontoToLogin}
+export default {getAll, getById, createEcoponto, updateById, deleteById, validateEcopontoToCreate}
