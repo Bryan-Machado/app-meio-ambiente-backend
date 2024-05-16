@@ -4,8 +4,8 @@ const app = express()
 import {PORT, HOST} from './config.js'
 import cors from 'cors'
 
-import userRouter from './routers/userRouter.js'
-import productRouter from './routers/productRouter.js'
+import markerRouter from './routers/markerRouter.js'
+import ecopontoRouter from './routers/ecopontoRouter.js'
 import cookieParser from 'cookie-parser'
 
 app.use(express.json())
@@ -16,8 +16,8 @@ app.use(cors({
 }))
 app.use(cookieParser)
 
-app.use('/user', userRouter)
-app.use('/product', productRouter)
+app.use('/ecoponto', ecopontoRouter)
+app.use('/marker', markerRouter)
 
 app.get('/', (req, res) => {
   res.json({message: 'Hello World!'})
