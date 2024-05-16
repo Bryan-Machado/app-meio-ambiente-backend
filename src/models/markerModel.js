@@ -11,13 +11,13 @@ const markerSchema = z.object({
         required_error: 'O ID do ecoponto relacionado ao marcador é obrigatório',
         invalid_type_error: 'O ID deve ser um numero inteiro'
     }),
-    longitude: z.bigint({
+    longitude: z.number({
         required_error: 'A longitude é obrigatória',
-        invalid_type_error: 'A longitude deve ser um bigint'
+        invalid_type_error: 'A longitude deve ser um numero float'
     }),
-    latitude: z.bigint({
+    latitude: z.number({
         required_error: 'A latitude é obrigatória',
-        invalid_type_error: 'A latitude deve ser um bigint'
+        invalid_type_error: 'A latitude deve ser um numero float'
     })
 })
 
