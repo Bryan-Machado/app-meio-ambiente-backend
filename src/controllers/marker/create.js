@@ -13,7 +13,7 @@ const create = async (req, res) => {
             })
         }
 
-        const marker = await markerModel.createMarker(dados)
+        const marker = await markerModel.createMarker(result.data)
         res.json({
             success: `marcador ${id} criado com sucesso`,
             marker
