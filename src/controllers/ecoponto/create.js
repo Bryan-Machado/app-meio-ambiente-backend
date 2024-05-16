@@ -1,5 +1,5 @@
 import ecopontoModel from "../../models/ecopontoModel.js"
-import zodErrorParser from "../../helpers/zodErrorFormatter.js"
+// import zodErrorParser from "../../helpers/zodErrorFormatter.js"
 
 const create = async (req, res) => {
     try {
@@ -9,7 +9,8 @@ const create = async (req, res) => {
         if (!result.success) {
             return res.status(400).json({
                 error: 'Dados de cadasro inválidos',
-                fields: zodErrorParser(result.error)
+                // fields: zodErrorParser(result.error)
+                fields: result.error.flatten().fieldErrors
             })
         }
 
