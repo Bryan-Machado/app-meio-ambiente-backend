@@ -19,8 +19,8 @@ const ecopontoSchema = z.object({
         required_error: 'O CNPJ do ecoponto é obrigatório.',
         invalid_type_error: 'O CNPJ deve ser uma string.'
     })
-    .min(18, {message: 'O CNPJ deve ter 18 caracteres'})
-    .max(18, {message: 'O CNPJ deve ter 18 caracteres'}),
+    .min(14, {message: 'O CNPJ deve ter 14 caracteres'})
+    .max(14, {message: 'O CNPJ deve ter 14 caracteres'}),
 
     descricao: z.string({
         required_error: 'O CNPJ do ecoponto é obrigatório.',
