@@ -27,8 +27,8 @@ model ecoponto {
 model marker {
   id                   Int                    @id @default(autoincrement())
   ecoponto_id          Int
-  longitude            BigInt
-  latitude             BigInt
+  longitude            Float                  @db.Float
+  latitude             Float                  @db.Float
   ecoponto             ecoponto               @relation(fields: [ecoponto_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_marker_ecoponto")
   marker_has_categoria marker_has_categoria[]
 
