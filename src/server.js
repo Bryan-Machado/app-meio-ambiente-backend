@@ -6,6 +6,7 @@ import cors from 'cors'
 
 import markerRouter from './routers/markerRouter.js'
 import ecopontoRouter from './routers/ecopontoRouter.js'
+import categoriaRouter from './routers/categoriaRouter.js'
 import cookieParser from 'cookie-parser'
 
 app.use(express.json())
@@ -18,6 +19,7 @@ app.use(cookieParser)
 
 app.use('/ecoponto', ecopontoRouter)
 app.use('/marker', markerRouter)
+app.use('/categoria', categoriaRouter)
 
 app.get('/', (req, res) => {
   res.json({message: 'Hello World!'})
