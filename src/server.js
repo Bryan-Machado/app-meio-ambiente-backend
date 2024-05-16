@@ -1,6 +1,5 @@
 // const express = require('express')
 import express from 'express'
-const app = express()
 import {PORT, HOST} from './config.js'
 import cors from 'cors'
 
@@ -9,13 +8,15 @@ import ecopontoRouter from './routers/ecopontoRouter.js'
 import categoriaRouter from './routers/categoriaRouter.js'
 import cookieParser from 'cookie-parser'
 
+const app = express()
+
 app.use(express.json())
 app.use(cors({
   origin: ['http://localhost:3000', 'http://localhost:8081', 'http://meusite.com'],
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }))
-app.use(cookieParser)
+app.use(cookieParser())
 
 app.use('/ecoponto', ecopontoRouter)
 app.use('/marker', markerRouter)
