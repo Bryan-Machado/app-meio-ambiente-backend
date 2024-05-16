@@ -6,7 +6,7 @@ import update from '../controllers/ecoponto/update.js';
 import remove from '../controllers/ecoponto/remove.js';
 const router = express.Router();
 
-// Rotas do user /user
+// Rotas do marker /marker
 
 router.get('/', listAll)
 

@@ -6,7 +6,7 @@ import update from '../controllers/marker/update.js';
 import remove from '../controllers/marker/remove.js';
 const router = express.Router();
 
-// Rotas do product /product
+// Rotas do ecoponto /ecoponto
 
 router.get('/', listAll)
 
