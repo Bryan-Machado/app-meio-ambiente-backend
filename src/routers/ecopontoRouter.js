@@ -1,9 +1,9 @@
 import express from 'express'
-import listAll from '../controllers/marker/listAll.js';
-import getById from '../controllers/marker/getById.js';
-import create from '../controllers/marker/create.js';
-import update from '../controllers/marker/update.js';
-import remove from '../controllers/marker/remove.js';
+import listAll from '../controllers/ecoponto/listAll.js';
+import getById from '../controllers/ecoponto/getById.js';
+import create from '../controllers/ecoponto/create.js';
+import update from '../controllers/ecoponto/update.js';
+import remove from '../controllers/ecoponto/remove.js';
 const router = express.Router();
 
 // Rotas do ecoponto /ecoponto
