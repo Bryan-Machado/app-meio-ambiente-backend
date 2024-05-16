@@ -34,8 +34,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `appMeioAmbiente`.`marker` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `ecoponto_id` INT NOT NULL,
-  `longitude` BIGINT NOT NULL,
-  `latitude` BIGINT NOT NULL,
+  `longitude` FLOAT NOT NULL,
+  `latitude` FLOAT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_marker_ecoponto_idx` (`ecoponto_id` ASC),
   CONSTRAINT `fk_marker_ecoponto`
