@@ -5,14 +5,6 @@ const update = async (req, res) => {
         const dados = req.body
         const id = req.params.id
 
-        const result = ecopontoModel.validateEcopontoToUpdate(dados)
-        if (!result.success) {
-            return res.status(400).json({
-                error: 'Dados de cadasro inválidos',
-                fields: zodErrorParser(result.error)
-            })
-        }
-
         const ecopontoEditado = await ecopontoModel.updateById(+id, dados)
         res.json({
             success: `Ecoponto ${id} atualizado com sucesso`,
