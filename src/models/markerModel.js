@@ -40,7 +40,19 @@ const getById = async (id) => {
 
 const createMarker = async (productObject) => {
     return await prisma.marker.create({
-        data: productObject
+        data: {
+            longitude: 123123,
+            latitude: 23232,
+            marker_has_categoria: {
+                create: [
+                    {
+                        categoria: {
+                            connect: { id: productObject.categoria.id }
+                        }
+                    }
+                ]
+            }
+        }
     })
 }
 
