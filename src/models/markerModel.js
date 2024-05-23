@@ -59,7 +59,6 @@ const getById = async (id) => {
 }
 
 const createMarker = async (productObject) => {
-    console.log(productObject)
     return await prisma.marker.create({
         data: {
             longitude: productObject.longitude,
