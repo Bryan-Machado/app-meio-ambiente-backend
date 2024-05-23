@@ -4,7 +4,7 @@ const create = async (req, res) => {
     try {
         const dados = req.body
         const result = markerModel.validateMarkerToCreate(dados)
-        
+
         if (!result.success) {
             return res.status(400).json({
                 error: 'Dados de cadasro inválidos',
@@ -15,7 +15,7 @@ const create = async (req, res) => {
 
         const marker = await markerModel.createMarker(result.data)
         res.json({
-            success: `marcador ${id} criado com sucesso`,
+            success: `marcador ${marker.id} criado com sucesso`,
             marker
         })
     } catch (error) {
