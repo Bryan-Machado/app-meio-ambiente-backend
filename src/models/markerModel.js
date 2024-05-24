@@ -81,7 +81,7 @@ const createMarker = async (productObject) => {
 const updateById = async (id, newMarkerObject) => {
     return await prisma.marker.update({
         data: {
-            newMarkerObject
+            ...newMarkerObject
         },
         where: {
             id
@@ -90,6 +90,13 @@ const updateById = async (id, newMarkerObject) => {
 }
 
 const deleteById = async (id) => {
+
+    await prisma.marker_has_categoria.deleteMany({
+        where: {
+            marker_id: id
+        }
+    })
+
     return await prisma.marker.delete({
         where: {
             id
