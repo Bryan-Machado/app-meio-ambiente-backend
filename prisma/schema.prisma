@@ -11,6 +11,7 @@ model categoria {
   id                   Int                    @id @default(autoincrement())
   nome                 String                 @db.VarChar(45)
   descricao            String                 @db.VarChar(400)
+  imagemurl            String?                @default("https://img.freepik.com/premium-vector/modern-minimal-found-error-icon-oops-page-found-404-error-page-found-with-concept_599740-716.jpg") @db.VarChar(400)
   marker_has_categoria marker_has_categoria[]
 }
 
@@ -21,14 +22,15 @@ model ecoponto {
   email     String?  @db.VarChar(45)
   telefone  String?  @db.VarChar(45)
   descricao String   @db.VarChar(400)
+  imagemurl String?  @default("https://img.freepik.com/premium-vector/modern-minimal-found-error-icon-oops-page-found-404-error-page-found-with-concept_599740-716.jpg") @db.VarChar(400)
   marker    marker[]
 }
 
 model marker {
   id                   Int                    @id @default(autoincrement())
-  ecoponto_id          Int
   longitude            Float                  @db.Float
   latitude             Float                  @db.Float
+  ecoponto_id          Int
   ecoponto             ecoponto               @relation(fields: [ecoponto_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_marker_ecoponto")
   marker_has_categoria marker_has_categoria[]
 
