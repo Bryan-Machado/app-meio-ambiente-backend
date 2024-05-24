@@ -40,11 +40,16 @@ const ecopontoSchema = z.object({
         invalid_type_error: 'O telefone deve ser uma string.'
     })
     .min(12, {message: 'O telefone do ecoponto deve ter pelo menos 12 caracteres.'})
-    .max(14, {message: 'O telefone do ecoponto deve ter no maximo 14 caracteres.'})
+    .max(14, {message: 'O telefone do ecoponto deve ter no maximo 14 caracteres.'}),
+
+    imagemurl:  z.string({
+        invalid_type_error: 'A url da imagem deve ser uma string.'
+    })
+    .max(400, {message: 'A url da imagem fornecida do ecoponto deve ter no maximo 400 caracteres.'})
 })
 
 const validateEcopontoToCreate = (ecoponto) => {
-    const partialEcopontoSchema = ecopontoSchema.partial({id: true, email: true, telefone: true}) //true para todos que são opcionais
+    const partialEcopontoSchema = ecopontoSchema.partial({id: true, email: true, telefone: true, imagemurl: true}) //true para todos que são opcionais
     return partialEcopontoSchema.safeParse(ecoponto)
 }
 

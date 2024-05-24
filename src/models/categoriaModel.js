@@ -20,11 +20,16 @@ const categoriaSchema = z.object({
         invalid_type_error: 'A descrição deve ser uma string.'
     })
     .min(50, {message: 'A descrição da categoria deve ter pelo menos 50 caracteres.'})
-    .max(400, {message: 'A descrição da categoria deve ter no maximo 400 caracteres.'})
+    .max(400, {message: 'A descrição da categoria deve ter no maximo 400 caracteres.'}),
+    
+    imagemurl:  z.string({
+        invalid_type_error: 'A url da imagem deve ser uma string.'
+    })
+    .max(400, {message: 'A url da imagem fornecida da categoria deve ter no maximo 400 caracteres.'})
 })
 
 const validateCategoriaToCreate = (categoria) => {
-    const partialcategoriaSchema = categoriaSchema.partial({id: true, email: true, telefone: true}) //true para todos que são opcionais
+    const partialcategoriaSchema = categoriaSchema.partial({id: true, email: true, telefone: true, imagemurl: true}) //true para todos que são opcionais
     return partialcategoriaSchema.safeParse(categoria)
 }
 
