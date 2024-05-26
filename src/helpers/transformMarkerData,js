@@ -1,0 +1,25 @@
+function transformMarkerData(data) {
+    const transformedData = {
+        latitude: data.latitude,
+        longitude: data.longitude,
+        ecoponto: {
+            connect: { id: data.ecoponto_id }
+        },
+        marker_has_categoria: {
+            deleteMany: {},
+            create: data.categories.map(id => (
+                {
+                    categoria: {
+                        connect: {
+                            id: id
+                        }
+                    }
+                }
+            ))
+        }
+    }
+
+    return transformedData;
+}
+
+export default transformMarkerData

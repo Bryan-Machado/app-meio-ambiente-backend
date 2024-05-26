@@ -78,13 +78,11 @@ const createMarker = async (productObject) => {
     });
 }
 
-const updateById = async (id, newMarkerObject) => {
+const updateById = async (markerId, newMarkerObject) => {
     return await prisma.marker.update({
-        data: {
-            ...newMarkerObject
-        },
+        data: newMarkerObject,
         where: {
-            id
+            id: markerId
         }
     })
 }
