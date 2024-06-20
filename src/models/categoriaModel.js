@@ -62,7 +62,7 @@ const updateById = async (id, newcategoriaObject) => {
 
 const deleteById = async (id) => {
     
-    await prisma.marker_has_categoria.delete({
+    await prisma.marker_has_categoria.deleteMany({
         where: {
             categoria_id: id
         }

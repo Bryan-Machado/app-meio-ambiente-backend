@@ -4,7 +4,7 @@ import categoriaModel from "../../models/categoriaModel.js"
 const create = async (req, res) => {
     try {
         const dados = req.body
-        const result = categoriaModel.validateCategoriaToCreate(dados)
+        const result = categoriaModel.validateCategoriaToCreate(dados);
 
         
         if (!result.success) {
@@ -13,6 +13,10 @@ const create = async (req, res) => {
                 // fields: zodErrorParser(result.error)
                 fields: result.error.flatten().fieldErrors
             })
+        }
+
+        if (result.data.imagemurl === '') {
+            delete result.data.imagemurl
         }
 
         const categoria = await categoriaModel.createCategoria(result.data)
